@@ -24,7 +24,7 @@ export default function EmergencyRoutesPage() {
   const [selectedRoute, setSelectedRoute] = useState(null);
 
   const [downloadAlert, setDownloadAlert] = useState(false); // For restricting download functionality
-
+  
   // Disable background scroll when alert is open
   useEffect(() => {
     if (downloadAlert) {
@@ -43,12 +43,6 @@ export default function EmergencyRoutesPage() {
     link.click();
     document.body.removeChild(link);
   };
-
-  // State for zoom level
-  const [scale, setScale] = useState(1);
-
-  const zoomIn = () => setScale((prev) => Math.min(prev + 0.2, 3)); // max 3x
-  const zoomOut = () => setScale((prev) => Math.max(prev - 0.2, 1)); // min 1x
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
@@ -279,40 +273,32 @@ export default function EmergencyRoutesPage() {
           onClick={() => setSelectedRoute(null)}
         >
           <div
-            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col"
+            className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-auto"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
             <div className="p-4 border-b flex items-center justify-between">
               <h3 className="text-xl font-bold">{selectedRoute.floor}</h3>
-              <div className="flex gap-2">
-                <Button variant="outline" onClick={zoomOut}>
-                  -
-                </Button>
-                <Button variant="outline" onClick={zoomIn}>
-                  +
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={() => setSelectedRoute(null)}
-                >
-                  Close
-                </Button>
-              </div>
+              <Button variant="outline" onClick={() => setSelectedRoute(null)}>
+                Close
+              </Button>
             </div>
-
-            {/* Image Container */}
-            <div className="flex-1 p-4 overflow-auto">
-              <div className="relative w-full h-[70vh] flex items-center justify-center bg-gray-200 rounded-lg">
+            <div className="p-4">
+              <div className="relative w-full h-96 bg-gray-200 rounded-lg flex items-center justify-center">
+                <div className="text-center text-gray-500">
+                  <MapPin className="h-20 w-20 mb-2 text-gray-400 mx-auto" />
+                  <p className="font-medium">
+                    Emergency Route Map - {selectedRoute.floor}
+                  </p>
+                  <p className="text-sm text-gray-400 mt-2">
+                    (Upload image to: /public{selectedRoute.image})
+                  </p>
+                </div>
+                {/* Uncomment when images are available */}
                 <Image
                   src={selectedRoute.image}
                   alt={`${selectedRoute.floor} emergency route`}
                   fill
                   className="object-contain"
-                  style={{
-                    transform: `scale(${scale})`,
-                    transition: "transform 0.2s",
-                  }}
                 />
               </div>
             </div>
