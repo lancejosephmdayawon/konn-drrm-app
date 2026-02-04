@@ -40,6 +40,12 @@ const bgMapDark = {
   blue: "bg-blue-700",
   gray: "bg-gray-700",
 };
+const bgMapDarkHover = {
+  red: "hover:bg-red-50 hover:text-red-700",
+  yellow: "hover:bg-yellow-50 hover:text-yellow-700",
+  blue: "hover:bg-blue-50 hover:text-blue-700",
+  gray: "hover:bg-gray-50 hover:text-gray-700",
+};
 const borderMap = {
   red: "border-red-500",
   yellow: "border-yellow-500",
@@ -129,7 +135,7 @@ export default function HomePage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="pt-4">
-                      <Button className={`w-full ${bgMapDark[disaster.color]} text-white`} variant="outline">
+                      <Button className={`w-full ${bgMapDark[disaster.color]} text-white ${bgMapDarkHover[disaster.color]}`} variant="outline">
                         View Procedures
                       </Button>
                     </CardContent>
