@@ -29,7 +29,6 @@ const iconMap = {
 
 export default function HomePage() {
   return (
-    <div className="container">
       <div className="min-h-screen bg-white">
         {/* Header */}
         <header className="bg-white shadow-sm border-b">
@@ -164,6 +163,5 @@ export default function HomePage() {
           </div>
         </footer>
       </div>
-    </div>
   );
 }
