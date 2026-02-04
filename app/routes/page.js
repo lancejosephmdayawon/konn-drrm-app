@@ -138,12 +138,12 @@ export default function EmergencyRoutesPage() {
                       </p>
                     </div>
                     {/* Uncomment when images are available */}
-                    {/* <Image
+                    <Image
                       src={route.image}
                       alt={`${route.floor} emergency route`}
                       fill
                       className="object-contain"
-                    /> */}
+                    />
                   </div>
 
                   {/* Action Buttons */}
@@ -320,12 +320,12 @@ export default function EmergencyRoutesPage() {
                   </p>
                 </div>
                 {/* Uncomment when images are available */}
-                {/* <Image
+                <Image
                   src={selectedRoute.image}
                   alt={`${selectedRoute.floor} emergency route`}
                   fill
                   className="object-contain"
-                /> */}
+                />
               </div>
             </div>
           </div>
