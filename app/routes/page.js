@@ -133,16 +133,17 @@ export default function EmergencyRoutesPage() {
                         {route.floor}
                       </p>
                       <p className="text-xs text-gray-400 mt-4 px-4 text-center">
-                        (Upload floor plan image to: /public{route.image})
+                        {/* (Upload floor plan image to: /public{route.image}) */}
+                        Currently unavailable.
                       </p>
                     </div>
                     {/* Uncomment when images are available */}
-                    <Image
+                    {/* <Image
                       src={route.image}
                       alt={`${route.floor} emergency route`}
                       fill
                       className="object-contain"
-                    />
+                    /> */}
                   </div>
 
                   {/* Action Buttons */}
@@ -314,16 +315,17 @@ export default function EmergencyRoutesPage() {
                     Emergency Route Map - {selectedRoute.floor}
                   </p>
                   <p className="text-sm text-gray-400 mt-2">
-                    (Upload image to: /public{selectedRoute.image})
+                    {/* (Upload image to: /public{selectedRoute.image}) */}
+                    Currently unavailable.
                   </p>
                 </div>
                 {/* Uncomment when images are available */}
-                <Image
+                {/* <Image
                   src={selectedRoute.image}
                   alt={`${selectedRoute.floor} emergency route`}
                   fill
                   className="object-contain"
-                />
+                /> */}
               </div>
             </div>
           </div>
