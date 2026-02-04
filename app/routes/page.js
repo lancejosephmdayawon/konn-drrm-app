@@ -24,8 +24,8 @@ export default function EmergencyRoutesPage() {
   const [selectedRoute, setSelectedRoute] = useState(null);
 
   const [downloadAlert, setDownloadAlert] = useState(false); // For restricting download functionality
-  
-  // Disable background scroll when alert is open
+
+  // Disable background scroll when download alert is open
   useEffect(() => {
     if (downloadAlert) {
       document.body.style.overflow = "hidden"; // disable scroll
@@ -33,6 +33,15 @@ export default function EmergencyRoutesPage() {
       document.body.style.overflow = "auto"; // re-enable scroll
     }
   }, [downloadAlert]);
+
+  // Disable background scroll when selected route is open
+  useEffect(() => {
+    if (selectedRoute) {
+      document.body.style.overflow = "hidden"; // disable scroll
+    } else {
+      document.body.style.overflow = "auto"; // re-enable scroll
+    }
+  }, [selectedRoute]);
 
   // Function to handle downloading the route image
   const downloadRoute = (route) => {
@@ -81,7 +90,10 @@ export default function EmergencyRoutesPage() {
                 Evacuation Safety
               </h2>
               <ul className="space-y-1 text-gray-700">
-                <li>• Always use stairs, never elevators during emergencies</li>
+                <li>
+                  • Always use stairs, never elevators (if applicable) during
+                  emergencies
+                </li>
                 <li>• Know at least two exit routes from your location</li>
                 <li>
                   • Proceed to the designated assembly point after evacuation
@@ -208,10 +220,22 @@ export default function EmergencyRoutesPage() {
                 <p className="font-semibold text-gray-900 mb-2">
                   Primary Assembly Point:
                 </p>
-                <p className="text-gray-700">
-                  North parking lot, near the main entrance flag pole
+                <p className="text-gray-700 mb-2">
+                  Parking lot, near the main entrance
                 </p>
-                <p className="text-sm text-gray-600 mt-2">
+
+                {/* Image container */}
+                <div className="relative w-full h-64 mb-2">
+                  {/* fixed height container */}
+                  <Image
+                    src="/assembly-point.png" // use leading slash for public folder
+                    alt="Assembly Point Location"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+
+                <p className="text-sm text-gray-600">
                   Stay at the assembly point until accounted for by emergency
                   personnel
                 </p>
@@ -230,12 +254,12 @@ export default function EmergencyRoutesPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-blue-50 p-4 rounded-lg">
                   <h3 className="font-semibold text-blue-900 mb-2">
-                    Stairwell Locations
+                    Stairwell/Exit Locations
                   </h3>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li>• North Stairwell (Main entrance side)</li>
                     <li>• South Stairwell (Rear of building)</li>
-                    <li>• East Emergency Exit (Side entrance)</li>
+                    <li>• Emergency Exit Ladders (On each floor, front side of building)</li>
                   </ul>
                 </div>
                 <div className="bg-purple-50 p-4 rounded-lg">
@@ -244,7 +268,7 @@ export default function EmergencyRoutesPage() {
                   </h3>
                   <ul className="text-sm text-gray-700 space-y-1">
                     <li>• Fire extinguishers on each floor</li>
-                    <li>• First aid kits near exits</li>
+                    <li>• Fire alarm near stairs</li>
                     <li>• Emergency lighting in stairwells</li>
                   </ul>
                 </div>

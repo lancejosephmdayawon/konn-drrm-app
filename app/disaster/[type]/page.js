@@ -15,14 +15,17 @@ const iconMap = {
   Power: Power
 };
 
+// Color mappings
+const bgMap = { red: "bg-red-50", yellow: "bg-yellow-50", blue: "bg-blue-50", gray: "bg-gray-50" };
+const borderMap = { red: "border-red-500", yellow: "border-yellow-500", blue: "border-blue-500", gray: "border-gray-500" };
+const textMap = { red: "text-red-700", yellow: "text-yellow-700", blue: "text-blue-700", gray: "text-gray-700" };
+const iconBgMap = { red: "bg-red-100", yellow: "bg-yellow-100", blue: "bg-blue-100", gray: "bg-gray-100" };
+
 export default function DisasterDetailPage() {
   const params = useParams();
   const disasterType = params?.type;
-  
-  // Get disaster data
   const disaster = disasters[disasterType];
 
-  // Handle invalid disaster type
   if (!disaster) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -34,8 +37,7 @@ export default function DisasterDetailPage() {
           <CardContent>
             <Link href="/">
               <Button>
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Home
+                <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
               </Button>
             </Link>
           </CardContent>
@@ -53,13 +55,12 @@ export default function DisasterDetailPage() {
         <div className="container mx-auto px-4 py-6">
           <Link href="/">
             <Button variant="ghost" className="mb-4">
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Home
+              <ArrowLeft className="mr-2 h-4 w-4" /> Back to Home
             </Button>
           </Link>
           <div className="flex items-center gap-4">
-            <div className={`${disaster.iconBg} w-16 h-16 rounded-full flex items-center justify-center`}>
-              <IconComponent className={`h-8 w-8 ${disaster.textColor}`} />
+            <div className={`${iconBgMap[disaster.color]} w-16 h-16 rounded-full flex items-center justify-center`}>
+              <IconComponent className={`h-8 w-8 ${textMap[disaster.color]}`} />
             </div>
             <div>
               <h1 className="text-3xl font-bold text-gray-900">{disaster.name} Emergency</h1>
@@ -71,11 +72,11 @@ export default function DisasterDetailPage() {
 
       <main className="container mx-auto px-4 py-8">
         {/* Emergency Alert */}
-        <div className={`${disaster.bgColor} border-2 ${disaster.borderColor} rounded-lg p-6 mb-8 shadow-lg`}>
+        <div className={`${bgMap[disaster.color]} border-2 ${borderMap[disaster.color]} rounded-lg p-6 mb-8 shadow-lg`}>
           <div className="flex items-start gap-3">
-            <AlertTriangle className={`h-6 w-6 ${disaster.textColor} flex-shrink-0 mt-1`} />
+            <AlertTriangle className={`h-6 w-6 ${textMap[disaster.color]} flex-shrink-0 mt-1`} />
             <div>
-              <h2 className={`text-xl font-semibold ${disaster.textColor} mb-2`}>Important Safety Information</h2>
+              <h2 className={`text-xl font-semibold ${textMap[disaster.color]} mb-2`}>Important Safety Information</h2>
               <p className="text-gray-700">{disaster.description}</p>
             </div>
           </div>
@@ -89,8 +90,8 @@ export default function DisasterDetailPage() {
               <ol className="space-y-4">
                 {disaster.procedures.map((procedure, index) => (
                   <li key={index} className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                    <div className={`${disaster.iconBg} rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0`}>
-                      <span className={`font-bold ${disaster.textColor}`}>{index + 1}</span>
+                    <div className={`${iconBgMap[disaster.color]} rounded-full w-10 h-10 flex items-center justify-center flex-shrink-0`}>
+                      <span className={`font-bold ${textMap[disaster.color]}`}>{index + 1}</span>
                     </div>
                     <div className="flex-1">
                       <p className="text-gray-800 font-medium">{procedure}</p>
@@ -108,8 +109,7 @@ export default function DisasterDetailPage() {
           <Card className="bg-gradient-to-r from-orange-500 to-red-600 text-white border-0 shadow-xl">
             <CardHeader>
               <CardTitle className="text-white flex items-center gap-2">
-                <MapPin className="h-6 w-6" />
-                Need to Evacuate?
+                <MapPin className="h-6 w-6" /> Need to Evacuate?
               </CardTitle>
               <CardDescription className="text-orange-100">
                 View emergency routes and exit locations for safe evacuation
