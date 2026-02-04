@@ -49,7 +49,7 @@ export default function HomePage() {
               <AlertTriangle className="h-6 w-6 flex-shrink-0" />
               <div>
                 <p className="font-semibold">
-                  In case of emergency, call 0985-488-3352 immediately
+                  In case of emergency, call 911 immediately
                 </p>
                 <p className="text-sm text-red-100">
                   Stay calm and follow evacuation procedures
