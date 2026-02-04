@@ -34,6 +34,12 @@ const bgMap = {
   blue: "bg-blue-50",
   gray: "bg-gray-50",
 };
+const bgMapDark = {
+  red: "bg-red-700",
+  yellow: "bg-yellow-700",
+  blue: "bg-blue-700",
+  gray: "bg-gray-700",
+};
 const borderMap = {
   red: "border-red-500",
   yellow: "border-yellow-500",
@@ -80,7 +86,7 @@ export default function HomePage() {
 
       <main className="container mx-auto px-4 py-8">
         {/* Emergency Alert Banner */}
-        <div className="bg-red-600 text-white rounded-lg p-4 mb-8 shadow-lg">
+        <div className="bg-gradient-to-r from-red-600 to-orange-600 text-white rounded-lg p-4 mb-8 shadow-lg">
           <div className="flex items-center gap-3">
             <AlertTriangle className="h-6 w-6 flex-shrink-0" />
             <div>
@@ -123,7 +129,7 @@ export default function HomePage() {
                       </CardDescription>
                     </CardHeader>
                     <CardContent className="pt-4">
-                      <Button className="w-full" variant="outline">
+                      <Button className={`w-full ${bgMapDark[disaster.color]} text-white`} variant="outline">
                         View Procedures
                       </Button>
                     </CardContent>
